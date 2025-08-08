@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Kaito Yaps Overlay",
+  "version": "1.0.0",
+  "description": "Show Kaito Yap scores next to X/Twitter usernames with a privacy-first, cached backend.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://*.supabase.co/*",
+    "https://*/functions/v1/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://x.com/*", "*://twitter.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Kaito Yaps Overlay",
+    "default_popup": "popup.html"
+  },
+  "icons": {},
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

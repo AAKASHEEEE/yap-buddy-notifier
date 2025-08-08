@@ -1,0 +1,10 @@
+.kaito-yap-badge{display:inline-flex;align-items:center;gap:4px;padding:1px 6px;border-radius:999px;background:rgba(32, 120, 244, 0.12);color:#1d9bf0;font:500 12px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;cursor:default;position:relative}
+.kaito-yap-badge.is-error{opacity:.6;filter:grayscale(1)}
+.kaito-yap-attached{margin-left:6px}
+.kaito-yap-card{position:absolute;top:calc(100% + 6px);left:0;min-width:220px;background:#0f1419;color:#e6e9ec;border:1px solid rgba(255,255,255,0.08);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.3);padding:10px;opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .15s ease, transform .15s ease;z-index:2147483647}
+.kaito-yap-card.open{opacity:1;transform:translateY(0);pointer-events:auto}
+.ky-row{margin:4px 0}
+.ky-username{opacity:.8}
+.ky-total{font-size:14px}
+.ky-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.ky-meta{margin-top:6px;font-size:11px;opacity:.7}
