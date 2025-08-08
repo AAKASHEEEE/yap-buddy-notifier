@@ -1,14 +1,17 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { useAuthSession } from "@/hooks/useAuthSession";
 
-const Index = () => {
+function Index() {
   return (
     <div className="min-h-screen bg-background">
       <header className="container py-10">
         <nav className="flex items-center justify-between">
           <div className="text-lg font-semibold">Kaito Yaps Overlay</div>
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
             <a href="#setup" className="text-sm text-muted-foreground hover:text-foreground">Setup</a>
             <a href="#security" className="text-sm text-muted-foreground hover:text-foreground">Security</a>
+            <AuthNav />
           </div>
         </nav>
       </header>
@@ -43,6 +46,20 @@ const Index = () => {
       <footer className="container py-10 text-sm text-muted-foreground">© {new Date().getFullYear()} Kaito Yaps Overlay</footer>
     </div>
   );
-};
+}
+
+function AuthNav() {
+  const { user, signOut } = useAuthSession();
+  if (user) {
+    return (
+      <Button size="sm" variant="secondary" onClick={() => signOut()}>Logout</Button>
+    );
+  }
+  return (
+    <Link to="/auth">
+      <Button size="sm" variant="outline">Login</Button>
+    </Link>
+  );
+}
 
 export default Index;
