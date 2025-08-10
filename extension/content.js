@@ -1,11 +1,11 @@
 (function(){
   const DEFAULTS = {
-    enabled: false,
+    enabled: true,
     ttlMinutes: 10,
     telemetry: false,
     followedOnly: false,
     minYap: 0,
-    backendUrl: "" // e.g. https://<project>.supabase.co/functions/v1/get-yap
+    backendUrl: "https://vxpsavlzvnuqalisypfj.supabase.co/functions/v1/get-yap" // default public function
   };
 
   const cache = new Map(); // session cache

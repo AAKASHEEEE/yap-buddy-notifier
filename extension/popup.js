@@ -1,5 +1,5 @@
 const DEFAULTS = {
-  enabled: false,
+  enabled: true,
   ttlMinutes: 10,
   telemetry: false,
   followedOnly: false,
@@ -14,22 +14,10 @@ function load(){
     $('enabled').checked = cfg.enabled;
     $('ttl').value = cfg.ttlMinutes;
     $('ttlVal').textContent = `${cfg.ttlMinutes}m`;
-    $('telemetry').checked = cfg.telemetry;
-    $('followedOnly').checked = cfg.followedOnly;
-    $('backendUrl').value = cfg.backendUrl || '';
   });
 }
 
-function save(){
-  const cfg = {
-    enabled: $('enabled').checked,
-    ttlMinutes: Number($('ttl').value),
-    telemetry: $('telemetry').checked,
-    followedOnly: $('followedOnly').checked,
-    backendUrl: $('backendUrl').value.trim()
-  };
-  chrome.storage.sync.set(cfg, () => window.close());
-}
+// settings auto-save on change; no manual save button
 
 function clearCache(){
   chrome.storage.local.get(null, (items) => {
@@ -41,7 +29,8 @@ function clearCache(){
 window.addEventListener('DOMContentLoaded', () => {
   load();
   $('ttl').addEventListener('input', () => $('ttlVal').textContent = `${$('ttl').value}m`);
-  $('save').addEventListener('click', save);
+  $('ttl').addEventListener('change', () => chrome.storage.sync.set({ ttlMinutes: Number($('ttl').value) }));
+  $('enabled').addEventListener('change', () => chrome.storage.sync.set({ enabled: $('enabled').checked }));
   $('clearCache').addEventListener('click', clearCache);
   $('privacy').addEventListener('click', (e) => {
     e.preventDefault();
